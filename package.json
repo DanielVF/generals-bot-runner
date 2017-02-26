@@ -1,0 +1,14 @@
+{
+    "name" : "generals-bot-runner",
+    "version" : "0.0.0",
+    "license" : "BSD-2-Clause",
+    "author" : "Daniel Von Fange",
+    "homepage" : "https://github.com/DanielVF/generals-bot-runner",
+    "scripts" : {
+        "test" : "mocha app/test"
+    },
+    "devDependencies" : {
+        "mocha": "3.2.0",
+        "should": "11.2.0"
+    }
+}

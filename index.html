@@ -1,0 +1,90 @@
+<html>
+    <head>
+        <title>Generals Bot Runner</title>
+        <link rel="stylesheet" href="app/vendor/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css"/>
+    
+    </head>
+    
+    <body>
+        <div class="container mt-4" >
+            <h1>Generals Bot Runner</h1>
+            <div class="row">
+                
+                <div class="col-9 col-sm-9" style="background: #efefef">
+                    <full-map></full-map>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <div class="card text-right mb-2">
+                        <div class="card-block">
+                            <h4 class="card-title">Gonzo v27</h4>
+                            <p class="card-text">Narbled warblers, enhanced</p>
+                        </div>
+                    </div>
+                    <div class="card text-right">
+                        <div class="card-block">
+                            <h4 class="card-title">Randombot v3</h4>
+                            <p class="card-text">With added connections</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+            
+            
+            
+            
+        </div>
+        
+        
+        <script>
+            // Make node modules happy in browser
+            window.module={
+                exports:{}
+            }
+        </script>
+        
+        <!-- Components -->
+        <script type="riot/tag" src="app/components/full-map.tag.html"></script>
+        <script src="app/vendor/riotcompiler.min.js"></script>
+        
+        <!-- Models -->
+        <script src="app/models/generals_game.js"></script>
+
+        <script>
+            function GameUI(){
+                riot.observable(this)
+                return this
+            }
+            
+            sim = {
+                bots:[]
+            }
+            sim.RegisterBot = function(bot){
+                this.bots.push(new bot())
+            }
+            
+            gameUI = new GameUI()
+            var game = new GeneralsGame()
+            gameUI.map = game.generateMap(9,12)
+            
+            
+            riot.mount('full-map', {gameUI: gameUI})
+            gameUI.trigger("update")
+            setInterval(function(){
+                moves = []
+                for(var i = 0; i < sim.bots.length; i++){
+                    moves[i] = sim.bots[i].turn(gameUI.map, i)
+                }
+                game.doStep(gameUI.map, moves)
+                gameUI.trigger("update")
+            }, 50)
+
+            
+        </script>
+            
+        <script src="bots/RandomBot v1/bot.js"></script>
+    </body>
+</html>
+
+

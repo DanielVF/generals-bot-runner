@@ -1,0 +1,51 @@
+<full-map>
+    <table class="map m-2" if={strengths != undefined}>
+        <tr each={row in map.rows} >
+            <td class={ownerClasses[owners[i]]} each={i in row}>{strengths[i] == 0 ? '' : strengths[i]}</td>
+        </tr>
+    </table>
+    
+    <style>
+    table.map {
+        border-collapse: collapse;
+    }
+    table.map td{
+        border:solid 1px #000;
+        width:40px;
+        height:40px;
+        text-align:center;
+        overflow:hidden;
+        text-shadow: 0 0 3px black;
+        color: white;
+        background: #dcdcdc;
+/*        background: red;*/
+    }
+    .neutral{ background: #ccc;}
+    .red{ background: red !important;}
+    .green{ background: green !important;}
+    .blue{ background: blue !important;}
+    
+    </style>
+    
+    <script>
+        var tag = this
+        tag.gameUI = this.opts.gameUI
+        tag.map = this.opts.gameUI.map
+        
+        
+        tag.ownerClasses = {
+            0: "red",
+            1: "green",
+            2: "blue",
+        }
+        tag.ownerClasses[-1] = "neutral"
+        
+        tag.gameUI.on("update", function(){
+            tag.map = tag.gameUI.map
+            tag.strengths = tag.map.strengths
+            tag.owners = tag.map.owners
+            tag.update()
+            
+        })
+    </script>
+</full-map>
