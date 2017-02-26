@@ -14,13 +14,19 @@ Good debugging information is is a key part of bot development. Bots can emit de
 
 # Where we are actually at
 
+![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/ohngeixi.png)
+
 We can draw a map in the browser. There are no cities, generals, or mountains. Oh. Plain squares grow. Bots move. The end.
 
-The first overall goal is **running javascript bots in local browser games**. 
+To use, open up the index.html in your browser. Play with editing `bots/RandomBot v1/`, and reloading the page.
+
+# From here
+
+The first goal is to support **running javascript bots in local browser games**. 
 
 To do this, we need:
 
-- [-] Drawing maps
+- [x] Drawing maps
 - [x] A nice way to organize our model files
 - [x] Get tests up and running for models
 - [ ] Map generation
