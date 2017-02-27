@@ -8,12 +8,12 @@ describe('Game', function() {
     beforeEach(function(){
         this.map = {
                     width: 3,
-                    height: 2,
-                    size: 6,
-                    strengths: [1,0,4,0,0,0],
-                    owners: [0,-1,1,-1,-1,-1],
-                    terrain: [0,0,0,0,0,-1],
-                    rows: [[0,1,2],[3,4,5]],
+                    height: 3,
+                    size: 9,
+                    strengths: [1,0,4,0,0,0,10,0,0],
+                    owners: [0,-1,1,-1,-1,-1,0,-1,-1],
+                    terrain: [0,0,0,0,0,-1,1,0,0],
+                    rows: [[0,1,2],[3,4,5],[6,7,8]],
                     step: 0
                 }
         this.game = new GeneralsGame()
@@ -21,7 +21,7 @@ describe('Game', function() {
     
     
     describe('Growth', function() {
-        describe('Plain Squares', function() {
+        describe('Plain', function() {
             it("should grow plain squares every 50 steps", function(){
                 this.map.strengths[0].should.equal(1)
                 this.map.step = 49
@@ -39,6 +39,34 @@ describe('Game', function() {
                 this.map.step = 50
                 this.game.doStep(this.map, [])
                 this.map.strengths[0].should.equal(1)
+            })
+        })
+        
+        describe('City', function() {
+            describe('Player Owned', function() {
+                it("should grow every two steps", function(){
+                    this.map.step = 0
+                    this.game.doStep(this.map, [])
+                    this.map.strengths[6].should.equal(10)
+                    this.map.step = 1
+                    this.game.doStep(this.map, [])
+                    this.map.strengths[6].should.equal(11)
+                })
+            })
+            describe('Neutral Owned', function() {
+                it("should every grow two steps if below 40", function(){
+                    this.map.step = 0
+                    this.map.owners[6] = -1
+                    this.map.strengths[6] = 39
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.game.doStep(this.map, [])
+                    this.map.strengths[6].should.equal(40)
+                })
             })
             
         })

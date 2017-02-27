@@ -26,6 +26,14 @@ GeneralsGame.prototype.generateMap = function(width, height){
         terrain[i] = -1
     }
     
+    // Add Cities
+    for(var i = 0; i<size; i++){
+        if(Math.random() > 0.06){ continue }
+        strengths[i] = 40 + Math.floor(Math.random()*10)
+        owners[i] = -1
+        terrain[i] = 1
+    }
+    
     // Precomputed Rows
     for(var y = 0; y < height; y++){
         rows[y] = Array(width)
@@ -79,6 +87,16 @@ GeneralsGame.prototype.doStep = function(map, moves){
     if(map.step % 50 === 0){
         for(var i = 0; i<map.size; i++){
             if(map.owners[i]>=0){
+                map.strengths[i] += 1;
+            }
+        }
+    }
+    
+    // Grow cities
+    if(map.step % 2 === 0){
+        for(var i = 0; i<map.size; i++){
+            if(map.terrain[i] != 1){ continue }
+            if(map.owners[i]>=0 || map.strengths[i] < 40){
                 map.strengths[i] += 1;
             }
         }
