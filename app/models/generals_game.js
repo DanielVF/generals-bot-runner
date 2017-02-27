@@ -2,7 +2,7 @@ function GeneralsGame(){
     
 }
 
-GeneralsGame.prototype.generateMap = function(width, height){
+GeneralsGame.prototype.generateMap = function(width, height, playerCount){
     var size = width * height;
     var strengths = Array(size)
     var owners = Array(size)
@@ -32,6 +32,14 @@ GeneralsGame.prototype.generateMap = function(width, height){
         strengths[i] = 40 + Math.floor(Math.random()*10)
         owners[i] = -1
         terrain[i] = 1
+    }
+    
+    // Add Generals
+    for(var playerIndex = 0; playerIndex<playerCount; playerIndex++){
+        i = Math.floor(Math.random()*size)
+        strengths[i] = 2
+        owners[i] = playerIndex
+        terrain[i] = 2
     }
     
     // Precomputed Rows
@@ -76,7 +84,20 @@ GeneralsGame.prototype.doStep = function(map, moves){
             map.strengths[destination] -= moveStrength
             if(map.strengths[destination] < 0){
                 map.strengths[destination] *= -1
-                map.owners[destination] = playerIndex
+                if(map.terrain[destination] == 2 ){
+                    // General capture - convert to city
+                    map.terrain[destination] = 1
+                    // General capture - give ownership of all squares
+                    var loser = map.owners[destination]
+                    for(var i = 0; i<map.size; i++){
+                        if(map.owners[i]==loser){
+                            map.owners[i] = playerIndex;
+                        }
+                    }
+                }else{
+                    map.owners[destination] = playerIndex
+                }
+                
             }
         }
     }
@@ -92,10 +113,10 @@ GeneralsGame.prototype.doStep = function(map, moves){
         }
     }
     
-    // Grow cities
+    // Grow cities and generals
     if(map.step % 2 === 0){
         for(var i = 0; i<map.size; i++){
-            if(map.terrain[i] != 1){ continue }
+            if(map.terrain[i] != 1 && map.terrain[i] != 2 ){ continue }
             if(map.owners[i]>=0 || map.strengths[i] < 40){
                 map.strengths[i] += 1;
             }
