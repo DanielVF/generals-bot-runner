@@ -6,7 +6,10 @@ GeneralsGame.prototype.generateMap = function(width, height){
     var size = width * height;
     var strengths = Array(size)
     var owners = Array(size)
+    var terrain = Array(size)
     var rows = Array(height)
+    
+    // Create Random Units
     for(var i = 0; i<size; i++){
         strengths[i] = Math.floor(Math.random()*Math.random() * 10.0 + 1)
         owners[i] = Math.floor(Math.random() * 4) - 1
@@ -15,6 +18,15 @@ GeneralsGame.prototype.generateMap = function(width, height){
         }
     }
     
+    // Add Mountains
+    for(var i = 0; i<size; i++){
+        if(Math.random() > 0.2){ continue }
+        strengths[i] = 0
+        owners[i] = -1
+        terrain[i] = -1
+    }
+    
+    // Precomputed Rows
     for(var y = 0; y < height; y++){
         rows[y] = Array(width)
         for(var x = 0; x < width; x++){
@@ -28,6 +40,7 @@ GeneralsGame.prototype.generateMap = function(width, height){
         size: size,
         strengths: strengths,
         owners: owners,
+        terrain: terrain,
         rows: rows,
         step: 0
     }
@@ -43,6 +56,7 @@ GeneralsGame.prototype.doStep = function(map, moves){
         var destination = move[1]
         if(playerIndex != map.owners[source]){ continue; } // Source must belong to moveing player
         if(map.strengths[source] <= 1 ){ continue; } // Source must have at least two strength to move
+        if(map.terrain[destination] == -1 ){ continue; } // Destination must not be a mountain
         var moveStrength = map.strengths[source] - 1
         map.strengths[source] = 1
         
@@ -57,8 +71,6 @@ GeneralsGame.prototype.doStep = function(map, moves){
                 map.owners[destination] = playerIndex
             }
         }
-        
-        
     }
         
     map.step += 1

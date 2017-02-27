@@ -37,7 +37,7 @@ Check the sample bots in the `bots` folder for examples.
 
 ![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/ohngeixi.png)
 
-We can draw a map in the browser. Plain squares grow. Bots move and attack. There are no cities, generals, or mountains.
+We can draw a map in the browser. Plain squares grow. Bots move and attack. There are no cities or generals yet.
 
 To use, open up the `index.html` file in your browser. Play with editing `bots/RandomBot v1/`, and reloading the page.
 
@@ -51,7 +51,7 @@ To do this, we need:
 - [x] A nice way to organize our model files
 - [x] Get tests up and running for models
 - [ ] Map generation
-- [ ] Handle the full generals game elements (mountains, cities, generals, winning)
+- [ ] Handle the full generals game elements (cities, generals, winning)
 - [ ] Good interface to bots
 - [x] A few simple example bots
 - [x] Start of documentation for bot writing

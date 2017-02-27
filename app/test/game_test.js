@@ -12,6 +12,7 @@ describe('Game', function() {
                     size: 6,
                     strengths: [1,0,4,0,0,0],
                     owners: [0,-1,1,-1,-1,-1],
+                    terrain: [0,0,0,0,0,-1],
                     rows: [[0,1,2],[3,4,5]],
                     step: 0
                 }
@@ -50,6 +51,12 @@ describe('Game', function() {
             this.map.strengths[2].should.equal(1) // One stays behind
             this.map.strengths[1].should.equal(3) // Three go to the captured square
             this.map.owners[1].should.equal(1) // Destination should be captured
+        })
+        
+        it("should not go in mountains", function(){
+            this.game.doStep(this.map, [null, [2,5]])
+            this.map.strengths[2].should.equal(4) // No strength should leave
+            this.map.strengths[5].should.equal(0) // Mountain should not be affected
         })
     })
 })

@@ -61,16 +61,16 @@ sim.RegisterBot(function(){
         neighbors = []
         var x = index % map.width
         var y = Math.floor(index / map.width)
-        if(y > 0){
+        if(y > 0 && map.terrain[index - map.width] != -1){
             neighbors.push(index - map.width)
         }
-        if(x > 0){
+        if(x > 0 && map.terrain[index - 1] != -1){
             neighbors.push(index - 1)
         }
-        if(y < map.height - 1){
+        if(y < map.height - 1 && map.terrain[index + map.width] != -1){
             neighbors.push(index + map.width)
         }
-        if(x < map.width - 1){
+        if(x < map.width - 1 && map.terrain[index + 1] != -1){
             neighbors.push(index + 1)
         }
         return neighbors

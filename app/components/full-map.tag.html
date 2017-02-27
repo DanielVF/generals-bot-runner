@@ -1,7 +1,7 @@
 <full-map>
     <table class="map m-2" if={strengths != undefined}>
         <tr each={row in map.rows} >
-            <td class={ownerClasses[owners[i]]} each={i in row}>{strengths[i] == 0 ? '' : strengths[i]}</td>
+            <td class="{ownerClasses[owners[i]]} {terrainClass[terrain[i]]}" each={i in row}>{strengths[i] == 0 ? '' : strengths[i]}</td>
         </tr>
     </table>
     
@@ -25,6 +25,8 @@
     .green{ background: green !important;}
     .blue{ background: blue !important;}
     
+    .mountain{ background: #bbbbbb url('app/images/mountain.png') center center !important;}
+    
     </style>
     
     <script>
@@ -40,10 +42,16 @@
         }
         tag.ownerClasses[-1] = "neutral"
         
+        tag.terrainClass = {
+            0: "",
+        }
+        tag.terrainClass[-1] = "mountain"
+        
         tag.gameUI.on("update", function(){
             tag.map = tag.gameUI.map
             tag.strengths = tag.map.strengths
             tag.owners = tag.map.owners
+            tag.terrain = tag.map.terrain
             tag.update()
             
         })
