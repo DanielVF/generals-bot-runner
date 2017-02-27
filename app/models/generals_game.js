@@ -9,13 +9,11 @@ GeneralsGame.prototype.generateMap = function(width, height, playerCount){
     var terrain = Array(size)
     var rows = Array(height)
     
-    // Create Random Units
+    // Assign terrain defaults
     for(var i = 0; i<size; i++){
-        strengths[i] = Math.floor(Math.random()*Math.random() * 10.0 + 1)
-        owners[i] = Math.floor(Math.random() * 4) - 1
-        if(owners[i] == -1){
-            strengths[i] = 0;
-        }
+        strengths[i] = 0
+        owners[i] = -1
+        terrain[i] = 0
     }
     
     // Add Mountains
@@ -28,7 +26,7 @@ GeneralsGame.prototype.generateMap = function(width, height, playerCount){
     
     // Add Cities
     for(var i = 0; i<size; i++){
-        if(Math.random() > 0.06){ continue }
+        if(Math.random() > 0.04){ continue }
         strengths[i] = 40 + Math.floor(Math.random()*10)
         owners[i] = -1
         terrain[i] = 1

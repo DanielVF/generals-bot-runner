@@ -11,7 +11,7 @@ sim.RegisterBot(function(){
             sources.push(i)
         }
         if(sources.length == 0){ return; }
-        var source = Math.floor(Math.random() * sources.length)
+        var source = sources[Math.floor(Math.random() * sources.length)]
         
         // Make a random move from this
         var width = map.width
