@@ -2,7 +2,7 @@ sim.RegisterBot(function(){
     this.name = "RandomBot"
     this.version = 1
     
-    this.turn = function(map, playerIndex){
+    this.doStep = function(map, playerIndex){
         var sources = [];
         // Find a square of mine with more than one strength on it
         for(var i = 0; i<= map.size; i++ ){

@@ -2,7 +2,7 @@ sim.RegisterBot(function(){
     this.name = "Edgebot"
     this.version = 1
     
-    this.turn = function(map, playerIndex){
+    this.doStep = function(map, playerIndex){
 
         
         // First, try taking a neigboring square

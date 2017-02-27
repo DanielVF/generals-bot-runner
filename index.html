@@ -74,7 +74,7 @@
             setInterval(function(){
                 moves = []
                 for(var i = 0; i < sim.bots.length; i++){
-                    moves[i] = sim.bots[i].turn(gameUI.map, i)
+                    moves[i] = sim.bots[i].doStep(gameUI.map, i)
                 }
                 game.doStep(gameUI.map, moves)
                 gameUI.trigger("update")
