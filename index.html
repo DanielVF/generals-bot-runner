@@ -20,10 +20,16 @@
                             <p class="card-text">Random Square, Random Move</p>
                         </div>
                     </div>
-                    <div class="card text-right">
+                    <div class="card text-right mb-2">
                         <div class="card-block">
                             <h4 class="card-title">Edgebot v1</h4>
                             <p class="card-text">Attacks neighbors if it can.</p>
+                        </div>
+                    </div>
+                    <div class="card text-right">
+                        <div class="card-block">
+                            <h4 class="card-title">Pullbot v1</h4>
+                            <p class="card-text">Randomly moves to the front line.</p>
                         </div>
                     </div>
                 </div>
@@ -66,7 +72,7 @@
             
             gameUI = new GameUI()
             var game = new GeneralsGame()
-            gameUI.map = game.generateMap(9,12, 3)
+            gameUI.map = game.generateMap(18, 18, 3)
             
             
             riot.mount('full-map', {gameUI: gameUI})
@@ -85,6 +91,7 @@
             
         <script src="bots/RandomBot v1/bot.js"></script>
         <script src="bots/EdgeBot v1/bot.js"></script>
+        <script src="bots/PullBot v1/bot.js"></script>
     </body>
 </html>
 
