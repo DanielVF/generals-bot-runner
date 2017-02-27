@@ -35,9 +35,9 @@ Check the sample bots in the `bots` folder for examples.
 
 # Where we are actually at
 
-![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/ohngeixi.png)
+![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/boacieki.png)
 
-We can draw a map in the browser. Plain squares grow. Bots move and attack. There are no cities or generals yet.
+We can show a map in the browser. Bots move and attack. Refresh the page to start a new game
 
 To use, open up the `index.html` file in your browser. Play with editing `bots/RandomBot v1/`, and reloading the page.
 
@@ -50,13 +50,12 @@ To do this, we need:
 - [x] Drawing maps
 - [x] A nice way to organize our model files
 - [x] Get tests up and running for models
-- [ ] Map generation
-- [ ] Handle the full generals game elements (cities, generals, winning)
-- [ ] Good interface to bots
+- [x] Map generation
+- [x] Handle the full generals game elements (cities, generals, winning)
 - [x] A few simple example bots
 - [x] Start of documentation for bot writing
 - [ ] Show bot information in sidebar
-- [ ] End a round after 2000 steps
+- [ ] End a round after 2000 steps and restart
 
 
 # Contributing
