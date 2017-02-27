@@ -49,6 +49,8 @@ GeneralsGame.prototype.generateMap = function(width, height, playerCount){
     }
     
     return {
+        playerCount: playerCount,
+        activePlayerCount: playerCount,
         width: width,
         height: height,
         size: size,
@@ -92,6 +94,8 @@ GeneralsGame.prototype.doStep = function(map, moves){
                             map.owners[i] = playerIndex;
                         }
                     }
+                    // General capture - reduce active player count
+                    map.activePlayerCount -= 1
                 }else{
                     map.owners[destination] = playerIndex
                 }

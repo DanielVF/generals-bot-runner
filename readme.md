@@ -55,7 +55,7 @@ To do this, we need:
 - [x] A few simple example bots
 - [x] Start of documentation for bot writing
 - [ ] Show bot information in sidebar
-- [ ] End a round after 2000 steps and restart
+- [x] End a round after 2000 steps or victory
 
 
 # Contributing

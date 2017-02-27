@@ -77,13 +77,16 @@
             
             riot.mount('full-map', {gameUI: gameUI})
             gameUI.trigger("update")
-            setInterval(function(){
+            var interval = setInterval(function(){
                 moves = []
                 for(var i = 0; i < sim.bots.length; i++){
                     moves[i] = sim.bots[i].doStep(gameUI.map, i)
                 }
                 game.doStep(gameUI.map, moves)
                 gameUI.trigger("update")
+                if(gameUI.map.step == 2000 || gameUI.map.activePlayerCount == 1){
+                    clearInterval(interval)
+                }
             }, 50)
 
             
