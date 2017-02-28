@@ -20,14 +20,14 @@ Your bot's `doStep` function is called each step of the game. A `map` and a `pla
 
 Here's a sample bot that does attempts to move the square in the upper left corner one space to the right. Over and over again.
 
-	bots.register(function(){
+	module.exports = function(){
 	    this.name = "Dumb Bot"
 	    this.version = 3
     
 	    this.doStep = function(map, playerIndex){
 			return [0, 1]
 		}
-	})
+	}
 
 To indicate your bot's move, return an array. The first number is the index of the source square. The second is the index of the destination square.
 

@@ -1,5 +1,5 @@
-sim.RegisterBot(function(){
-    this.name = "Edgebot"
+module.exports = function(){
+    this.name = "Pullbot"
     this.version = 1
     
     this.doStep = function(map, playerIndex){
@@ -104,4 +104,4 @@ sim.RegisterBot(function(){
         }
         return neighbors
     }
-})
+}

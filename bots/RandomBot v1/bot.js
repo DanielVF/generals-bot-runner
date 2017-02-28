@@ -1,4 +1,4 @@
-sim.RegisterBot(function(){
+module.exports = function(){
     this.name = "RandomBot"
     this.version = 1
     
@@ -38,4 +38,4 @@ sim.RegisterBot(function(){
         
         return [source, dest, false]
     }
-})
+}
