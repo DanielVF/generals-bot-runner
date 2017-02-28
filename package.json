@@ -7,6 +7,9 @@
     "scripts" : {
         "test" : "mocha app/test"
     },
+    "dependencies": {
+      "socket.io-client": "^1.7.2"
+    },
     "devDependencies" : {
         "mocha": "3.2.0",
         "should": "11.2.0"

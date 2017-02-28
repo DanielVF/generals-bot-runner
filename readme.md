@@ -33,6 +33,12 @@ To indicate your bot's move, return an array. The first number is the index of t
 
 Check the sample bots in the `bots` folder for examples.
 
+# Running a bot on the server
+
+To run your bot against others on the FFA Server, 
+
+`node main.js ./bots/MyBot v1/bot.js MAKUEUPASECRETPHRASE`
+
 # Where we are actually at
 
 ![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/boacieki.png)
