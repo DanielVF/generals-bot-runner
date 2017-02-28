@@ -52,19 +52,15 @@ module.exports = function(){
         
         
         
-        // Find the largest square of mine
-        var largestStrength = 0
-        var source = undefined 
+        // Find a square of mine with more than one strength on it
+        var sources = [];
         for(var i = 0; i<= map.size; i++ ){
             if(map.owners[i] != playerIndex) { continue; }
             if(map.strengths[i] <=1 ) { continue; }
-            if(map.strengths[i] < largestStrength ) { continue; }
-            source = i
-            largestStrength = map.strengths[i]
+            sources.push(i)
         }
-        if(source == undefined){
-            return
-        }
+        if(sources.length == 0){ return; }
+        var source = sources[Math.floor(Math.random() * sources.length)]
 
         
         // Move towards the front line

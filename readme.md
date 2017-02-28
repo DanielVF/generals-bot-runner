@@ -39,7 +39,7 @@ Check the sample bots in the `bots` folder for examples.
 
 We can show a map in the browser. Bots move and attack. Refresh the page to start a new game
 
-To use, open up the `index.html` file in your browser. Play with editing `bots/RandomBot v1/`, and reloading the page.
+To use, open up the `index.html` file in your browser. Play with editing `bots/MyBot v1/`, and reloading the page.
 
 # From here
 

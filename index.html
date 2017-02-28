@@ -16,6 +16,12 @@
                 <div class="col-3 col-sm-3">
                     <div class="card text-right mb-2">
                         <div class="card-block">
+                            <h4 class="card-title">My Super Bot</h4>
+                            <p class="card-text">Start editing here</p>
+                        </div>
+                    </div>
+                    <div class="card text-right mb-2">
+                        <div class="card-block">
                             <h4 class="card-title">Randombot v1</h4>
                             <p class="card-text">Random Square, Random Move</p>
                         </div>
@@ -56,23 +62,37 @@
         
         <!-- Models -->
         <script src="app/models/generals_game.js"></script>
-
+        
+        <!-- Bots -->
         <script>
-            function GameUI(){
-                riot.observable(this)
-                return this
-            }
-            
             sim = {
                 bots:[]
             }
             sim.RegisterBot = function(bot){
                 this.bots.push(new bot())
             }
+        </script>
+        <script src="bots/MyBot v1/bot.js"></script>
+        <script>sim.RegisterBot(module.exports)</script>
+        <script src="bots/RandomBot v1/bot.js"></script>
+        <script>sim.RegisterBot(module.exports)</script>
+        <script src="bots/EdgeBot v1/bot.js"></script>
+        <script>sim.RegisterBot(module.exports)</script>
+        <script src="bots/PullBot v1/bot.js"></script>
+        <script>sim.RegisterBot(module.exports)</script>
+        
+        
+        <script>
+            function GameUI(){
+                riot.observable(this)
+                return this
+            }
+            
+            
             
             gameUI = new GameUI()
             var game = new GeneralsGame()
-            gameUI.map = game.generateMap(18, 18, 3)
+            gameUI.map = game.generateMap(18, 18, sim.bots.length)
             
             
             riot.mount('full-map', {gameUI: gameUI})
@@ -92,12 +112,7 @@
             
         </script>
             
-        <script src="bots/RandomBot v1/bot.js"></script>
-        <script>sim.RegisterBot(module.exports)</script>
-        <script src="bots/EdgeBot v1/bot.js"></script>
-        <script>sim.RegisterBot(module.exports)</script>
-        <script src="bots/PullBot v1/bot.js"></script>
-        <script>sim.RegisterBot(module.exports)</script>
+
     </body>
 </html>
 
