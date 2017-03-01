@@ -7,7 +7,7 @@ var socket = io('http://botws.generals.io');
 // -----------------------
 
 if(process.argv.length >= 3){
-    var botFilename = botFilename
+    var botFilename = process.argv[2]
     var Bot = require(botFilename)
 }else{
     var Bot = require("./bots/MyBot v1/bot.js")
