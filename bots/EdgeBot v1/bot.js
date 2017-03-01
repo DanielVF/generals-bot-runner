@@ -1,5 +1,6 @@
 module.exports = function(){
     this.name = "Edgebot"
+    this.description = "Attacks neighboring squares it can take."
     this.version = 1
     
     this.doStep = function(map, playerIndex){

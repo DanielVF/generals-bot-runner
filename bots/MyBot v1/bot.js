@@ -1,5 +1,6 @@
 module.exports = function(){
     this.name = "My Super Bot"
+    this.description = "Edit this bot!"
     this.version = 1
     
     this.doStep = function(map, playerIndex){

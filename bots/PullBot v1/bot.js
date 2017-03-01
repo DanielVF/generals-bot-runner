@@ -1,5 +1,6 @@
 module.exports = function(){
     this.name = "Pullbot"
+    this.description = "Randomly moves closer to the battle."
     this.version = 1
     
     this.doStep = function(map, playerIndex){

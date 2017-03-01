@@ -1,5 +1,6 @@
 module.exports = function(){
     this.name = "RandomBot"
+    this.description = "Makes random moves"
     this.version = 1
     
     this.doStep = function(map, playerIndex){

@@ -1,0 +1,22 @@
+<bot-game-card>
+    <div class="card text-right mb-2">
+        <div class="card-block">
+            <h4 class="card-title">{opts.bot.name}</h4>
+            <div class={ownerClasses[opts.botgameindex]} style="width:20px; height: 20px; font-size:1px; position:absolute; top: 23px;">.</div>
+            <p class="card-text">{opts.bot.description}</p>
+        </div>
+    </div>
+    <script>
+    var tag = this
+    tag.ownerClasses = {
+        0: "red",
+        1: "green",
+        2: "blue",
+        3: "teal",
+        4: "purple",
+    }
+    
+    console.log(this.opts)
+    
+    </script>
+</bot-game-card>
