@@ -62,6 +62,28 @@ GeneralsGame.prototype.generateMap = function(width, height, playerCount){
     }
 }
 
+GeneralsGame.prototype.scoreMap = function(map){
+    scores = Array()
+    for(var playerIndex = 0; playerIndex < map.playerCount; playerIndex++){
+        scores.push({armies: 0, cities: 0, land: 0})
+    }
+    
+    var size = map.width * map.height;
+    var strengths = map.strengths
+    var owners = map.owners
+    var terrain = map.terrain
+    for(var i = 0; i<size; i++){
+        if(owners[i] == -1){ continue;}
+        var owner = owners[i]
+        scores[owner].armies += strengths[i]
+        scores[owner].land += 1
+        if(terrain[owner] == 2 || terrain[owner] == 3){
+            scores[owner].cities += 1
+        }
+    }
+    return scores
+}
+
 GeneralsGame.prototype.doStep = function(map, moves){
 
     // Handle moves first

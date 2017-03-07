@@ -6,11 +6,17 @@ Everything you need to run and develop [generals.io](http://generals.io/) bots.
 
 When you are developing a bot, you shouldn't have to wait 20 minutes to see a replay with your changes in action. The Generals.io Bot Runner will watch your files for changes, automatically load your code in, and restart a local game played at high speed right in a browser window. You'll be able to see your bot running in less than a second after you make a change.
 
-Have plenty of CPU power? Spin off multiple workers in tournament mode to quickly get hundreds of games played allowing you to compare how much your bot has improved.
+Have plenty of CPU power? Spin off multiple workers in tournament mode to quickly get hundreds of games played allowing you to compare how much your bot has improved. _Future_
 
-Ready for online play? Press a button and your bot code will be run against the generals.io bot server. The best part? You don't have to write any network code at all.
+Ready for online play? Press a button and your bot code will be run against the generals.io bot server. The best part? You don't have to write any network code at all. _Future_
 
-Good debugging information is is a key part of bot development. Bots can emit debugging maps for each turn, which you can overlay onto the main map. You can also emit debugging values to the sidebar.
+Good debugging information is is a key part of bot development. Bots can emit debugging maps for each turn, which you can overlay onto the main map. You can also emit debugging values to the sidebar. _Future_
+
+We'll also support more than just javascript, with tiny libraries for other languages.
+
+# Get started
+
+To use, open up the `index.html` file in your browser. Play with editing `bots/MyBot v1/`, and reloading the page.
 
 # Writing a Bot
 
@@ -39,13 +45,6 @@ To run your bot against others on the FFA Server,
 
 `node main.js ./bots/MyBot v1/bot.js MAKUEUPASECRETPHRASE`
 
-# Where we are actually at
-
-![Screenshot](http://leancoder-share.s3.amazonaws.com/paste/boacieki.png)
-
-We can show a map in the browser. Bots move and attack. Refresh the page to start a new game
-
-To use, open up the `index.html` file in your browser. Play with editing `bots/MyBot v1/`, and reloading the page.
 
 # From here
 
@@ -60,7 +59,7 @@ To do this, we need:
 - [x] Handle the full generals game elements (cities, generals, winning)
 - [x] A few simple example bots
 - [x] Start of documentation for bot writing
-- [ ] Show bot information in sidebar
+- [x] Show bot information in sidebar
 - [x] End a round after 2000 steps or victory
 
 

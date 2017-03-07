@@ -1,0 +1,118 @@
+<html>
+    <head>
+        <title>Generals Bot Runner</title>
+        <link rel="stylesheet" href="app/vendor/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css"/>
+        <style>
+        .neutral{ background-color: #ccc;}
+        .red{ background-color: red !important;}
+        .green{ background-color: green !important;}
+        .blue{ background-color: blue !important;}
+        .teal{ background-color: teal !important;}
+        .purple{ background-color: purple !important;}
+    
+        .mountain{ background: #bbbbbb url('app/images/mountain.png') center center !important;}
+        .city{ background-image: url('app/images/city.png') !important; background-position: center center !important;}
+        .city.neutral { background-color: #777777 !important; }
+        .general{ background-image: url('app/images/general.png') !important; background-position: center center !important;}
+        </style>
+    </head>
+    
+    <body>
+        <div class="container mt-4" >
+            <h1>Generals Bot Runner</h1>
+            <div class="row">
+                
+                <div class="col-9 col-sm-9" style="background: #efefef">
+                    <full-map></full-map>
+                </div>
+                <div class="col-3 col-sm-3">
+                    <bot-game-cards></bot-game-cards>
+                    <training-score></training-score>
+                </div>
+                
+                
+            </div>
+            
+            
+            
+            
+        </div>
+        
+        
+        <script>
+            // Make node modules happy in browser
+            window.module={
+                exports:{}
+            }
+        </script>
+        
+        <!-- Components -->
+        <script type="riot/tag" src="app/components/full-map.tag.html"></script>
+        <script type="riot/tag" src="app/components/bot-game-card.tag.html"></script>
+        <script type="riot/tag" src="app/components/bot-game-cards.tag.html"></script>
+        <script type="riot/tag" src="app/components/training-score.tag.html"></script>
+        <script src="app/vendor/riotcompiler.min.js"></script>
+        
+        <!-- Models -->
+        <script src="app/models/generals_game.js"></script>
+        
+        <!-- Bots -->
+        <script>
+            sim = {
+                bots:[]
+            }
+            sim.RegisterBot = function(bot){
+                this.bots.push(new bot())
+            }
+        </script>
+        <script src="../generals-gordon/gordon.js"></script>
+        <script>sim.RegisterBot(module.exports)</script>
+            
+        
+        <script>
+            function GameUI(){
+                riot.observable(this)
+                return this
+            }
+            
+            function Scorething(){
+                riot.observable(this)
+                this.hasScore = false
+                this.score = 0
+                return this
+            }
+            
+            
+            var scorething = new Scorething()
+            
+            gameUI = new GameUI()
+            var game = new GeneralsGame()
+            gameUI.map = game.generateMap(20, 25, sim.bots.length)
+            
+            riot.mount('full-map', {gameUI: gameUI})
+            riot.mount('bot-game-cards', {bots: sim.bots})
+            riot.mount('training-score', {scorething: scorething, name:"Opening expansion", description: "How fast can you expand before the first reinforcements?"})
+            gameUI.trigger("update")
+            var interval = setInterval(function(){
+                moves = []
+                for(var i = 0; i < sim.bots.length; i++){
+                    moves[i] = sim.bots[i].doStep(gameUI.map, i)
+                }
+                game.doStep(gameUI.map, moves)
+                gameUI.trigger("update")
+                if(gameUI.map.step == 50){
+                    scorething.score = game.scoreMap(gameUI.map)[0].land
+                    scorething.hasScore = true
+                    scorething.trigger("update")
+                    clearInterval(interval)
+                }
+            }, 10)
+
+            
+        </script>
+            
+
+    </body>
+</html>
+
+

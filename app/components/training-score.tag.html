@@ -1,0 +1,20 @@
+<training-score>
+    <div class="card mb-2">
+        <div class="card-block">
+            <h4 class="card-title">{opts.name}</h4>
+            <h4 class="card-title" if={hasScore}>Score: {score}</h4>
+            
+            <p class="card-text">{opts.description}</p>
+        </div>
+    </div>
+    <script>
+        var tag = this
+        this.hasScore = this.opts.scorething.hasScore
+        this.score = this.opts.scorething.score
+        tag.opts.scorething.on("update", function(){
+            tag.hasScore = tag.opts.scorething.hasScore
+            tag.score = tag.opts.scorething.score
+            tag.update()
+        })
+    </script>
+</training-score>
